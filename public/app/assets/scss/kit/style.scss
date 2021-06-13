@@ -1,0 +1,52 @@
+/*------------------------------------------------------------------
+ [Master Stylesheet]
+
+  Project:	Star Admin UI Kit
+  Version:	1.0
+-------------------------------------------------------------------*/
+
+/*-------------------------------------------------------------------*/
+
+/* === Import Bootstrap functions and variables === */
+
+@import "../../../node_modules/bootstrap/scss/functions";
+@import "../../../node_modules/bootstrap/scss/variables";
+/*-------------------------------------------------------------------*/
+
+/* === Import template variables === */
+
+@import "variables";
+/*-------------------------------------------------------------------*/
+
+/* === Boostrap Main SCSS === */
+
+@import "../../../node_modules/bootstrap/scss/bootstrap";
+/*-------------------------------------------------------------------*/
+
+/* === Template mixins === */
+
+@import "mixins";
+
+/*-------------------------------------------------------------------*/
+
+/* === Core Styles === */
+
+@import "reset";
+@import "fonts";
+@import "functions";
+@import "typography";
+@import "misc";
+@import "utilities";
+@import "demo";
+@import "dashboard";
+/*-------------------------------------------------------------------*/
+
+/* === Components === */
+
+@import "components";
+/*-------------------------------------------------------------------*/
+
+/* === Landing screens === */
+
+@import "screens";
+/*-------------------------------------------------------------------*/

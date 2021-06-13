@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+
+    <!-- Title of Website -->
+    <title>{{$page}}</title>
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="{{my_asset('landing/css/plugins/bootstrap.min.css')}}">
+
+
+    <!-- Plugins CSS -->
+    <link rel="stylesheet" href="{{my_asset('landing/css/plugins/loaders.min.css')}}">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="{{my_asset('landing/css/style.css')}}">
+
+    <!-- Responsive CSS -->
+    <link href="{{my_asset('landing/css/responsive.css')}}" rel="stylesheet">
+
+</head>
+
+<body data-spy="scroll" data-target=".scrollspy" class="bg-dark">
+
+    <!-- Preloader  -->
+    <div class="loader bg-dark">
+        <div class="loader-inner ball-scale-ripple-multiple ball-scale-ripple-multiple-color">
+            <div></div>
+            <div></div>
+            <div></div>
+        </div>
+    </div>
+    <!-- /End Preloader  -->
+
+
+    <div id="page">
+
+        <!-- Rain Image BG -->
+        <div class="section-overlay media">
+            <img id="page-rain" alt="" src="{{my_asset($data->image)}}">
+        </div>
+      
+
+
+        <div class="container-fluid">
+            <div class="row">
+
+
+              
+
+                <div id="info" class="col-md-12 text-white text-center page-info col-transform">
+                    <div class="vert-middle">
+                        <div class="reveal scale-out">
+
+                            <!-- Count Down -->
+                            <div class="count-down p-t-b-15" data-end-date="{{substr($data->date,5,2)}} {{substr($data->date,8,2)}}, {{substr($data->date,0,4)}} {{substr($data->date,11,2)}}:{{substr($data->date,14,2)}}:00">
+                            </div>
+                            <!-- /End Count Down -->
+
+                            <!-- Logo -->
+                            <div class="p-t-b-15">
+                                <img src="{{my_asset($sett->admin_logo)}}"  alt="">
+                            </div>
+                            <!-- /End Logo -->
+
+                            <div class="p-t-b-15">
+                                <!-- Headline & Description -->
+                                <h2><span class="font-weight-200">{{$data->title}}</span></h2>
+
+                                <p>{{$data->description}}<br>
+                                </p>
+                                <!-- /End Headline & Description -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+ 
+
+    <script src="{{my_asset('landing/js/plugins/jquery1.11.2.min.js')}}"></script>
+    <script src="{{my_asset('landing/js/plugins/bootstrap.min.js')}}"></script>
+    <script src="{{my_asset('landing/js/plugins/scrollreveal.min.js')}}"></script>
+
+    <script src="{{my_asset('landing/js/plugins/jquery.ajaxchimp.min.js')}}"></script>
+
+    <script src="{{my_asset('landing/js/plugins/jquery.countdown.min.js')}}"></script>
+    <script src="{{my_asset('landing/js/plugins/rainyday.min.js')}}"></script>
+    <script src="{{my_asset('landing/js/plugins/prefixfree.min.js')}}"></script>
+
+    <script src="{{my_asset('landing/js/custom.js')}}"></script>
+
+</body>
+
+</html>

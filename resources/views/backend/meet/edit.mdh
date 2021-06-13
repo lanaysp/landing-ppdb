@@ -1,0 +1,55 @@
+@extends('backend.inc.app')
+@section('content')
+<div class="section-body">
+    <div class="row">
+        <div class="col-12">
+            <div class="card">
+                <form action="{{route('ppdb.meet.store',['update'])}}" method="post" enctype="multipart/form-data" class="card-body">
+                    {{csrf_field()}}
+                    <div class="row">
+                        <div class="col-lg-6 col-sm-12">
+                            <div class="form-group">
+                                <label class="label-control">Tema Meeting</label>
+                                <input type="hidden" name="id" value="{{$data->id}}">
+                                <input type="text" name="title" value="{{$data->title}}" class="form-control">
+                            </div>
+                        </div>
+                        <div class="col-lg-6 col-sm-12">
+                            <div class="form-group">
+                                <label class="label-control">Jadwal Meeting</label>
+                                <input type="datetime-local" name="date" value="{{$data->date}}" class="form-control">
+                            </div>
+                        </div>
+                   
+                        <div class="col-12">
+                            <div class="form-group">
+                                <label class="control-label">Deskripsi Singkat</label>
+                                <textarea name="description" class="form-control">{{$data->description}}</textarea>
+                            </div>
+                        </div>
+                        <div class="col-12">
+                            <div class="form-group">
+                                <label class="control-label">Image Waiting</label>
+                                <div id="image-preview" class="image-preview">
+                                    <label for="image-upload" id="image-label">Pilih Gambar</label>
+                                    <input type="file" name="image" id="image-upload" />
+                                </div>
+                            </div>
+                        </div>
+                       
+                    </div>
+                    <div class="form-group">
+                        <div class="col-sm-12">
+                            <button class="btn btn-primary">Update Jadwal Meeting</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+</section>
+@section('script')
+<script src="{{my_asset('plugins/upload-preview/assets/js/jquery.uploadPreview.min.js')}}"></script>
+@endsection
+@endsection

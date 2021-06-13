@@ -1,0 +1,79 @@
+@extends('user.app_ppdb')
+@section('content')
+@section('style')
+<!-- START: Page CSS-->
+<link rel="stylesheet" href="{{my_asset('admin/users/vendors/fullcalendar/core/main.min.css')}}">
+<link rel="stylesheet" href="{{my_asset('admin/users/vendors/fullcalendar/daygrid/main.css')}}" />
+<link rel="stylesheet" href="{{my_asset('admin/users/vendors/fullcalendar/timegrid/main.css')}}" />
+<link rel="stylesheet" href="{{my_asset('admin/users/vendors/fullcalendar/list/main.css')}}" />
+<!-- END: Page CSS-->
+@endsection
+<!-- START: Card Data-->
+<div class="row">
+    <div class="col-12 col-lg-12  mt-3">
+        <div class="row">
+           
+            <div class="col-12 col-md-12 col-lg-12 mt-3">
+                <div class="card">
+                    <div class="card-content">
+                        <div class="card-body">
+                            <input type="hidden" id="tanggal_now" value="{{date('Y-m-d')}}">
+                            <div id="calendar" class="height-500"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- calendar modal start -->
+    <div id="meeting-detail" class="modal fade" role="dialog">
+        <div class="modal-dialog text-left">
+
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-body">
+                    <div class="card-content">
+                        <div class="card-body p-4">
+                            <div class="d-md-flex">
+                                <div class="my-auto">
+                                    <img id="gambar_meet" src="" alt="author" width="48" class="my-auto">
+                                </div>
+                                <div class="content px-md-3 my-3 my-md-0">
+                                    <span class="mb-0 font-w-600 h5 meet-title" id="judul_meeting"></span><br>
+                                    <p class="mb-0 font-w-500 tx-s-12" id="description"></p>
+                                </div>
+                                <div class="my-auto">
+                                    <a href="" id="link" target="_blank" class="btn btn-outline-primary font-w-600 my-auto text-nowrap">Detail</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+    </div>
+    <!-- End Calendar Modal -->
+
+</div>
+@section('script')
+
+<!-- START: Page Vendor JS-->
+<script src="{{my_asset('admin/users/vendors/popper/popper.min.js')}}"></script>
+<script src="{{my_asset('admin/users/vendors/tooltip/tooltip-min.js')}}"></script>
+
+<script src="{{my_asset('admin/users/vendors/fullcalendar/core/main.min.js')}}"></script>
+<script src="{{my_asset('admin/users/vendors/fullcalendar/interaction/main.js')}}"></script>
+<script src="{{my_asset('admin/users/vendors/fullcalendar/daygrid/main.js')}}"></script>
+<script src="{{my_asset('admin/users/vendors/fullcalendar/timegrid/main.js')}}"></script>
+<script src="{{my_asset('admin/users/vendors/fullcalendar/list/main.js')}}"></script>
+<script src="{{my_asset('admin/users/vendors/fullcalendar/bundle/moment.min.js')}}"></script>
+<script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+
+<script src="{{my_asset('admin/users/js/calendar.script.js')}}"></script>
+@endsection
+@endsection

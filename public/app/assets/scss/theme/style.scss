@@ -1,0 +1,17 @@
+/* Layouts */
+
+@import "../../../node_modules/bootstrap/scss/functions";
+@import "../../../node_modules/bootstrap/scss/variables";
+@import "../kit/variables";
+@import "variables";
+@import "../kit/mixins/misc";
+@import "../kit/mixins/animation";
+@import "nav";
+@import "navbar";
+@import "sidebar";
+@import "footer";
+@import "layouts";
+@import "card";
+@import "misc";
+@import "dashboard";
+@import "tables";

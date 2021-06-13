@@ -1,0 +1,25 @@
+.export-table-btn {
+  margin-bottom: 16px;
+}
+
+div.dataTables_wrapper {
+  div.dataTables_length {
+    select {
+      width: 80px;
+    }
+  }
+}
+
+.my-datatables {
+  thead {
+    th {
+      background-color: #f2f4f8;
+      font-weight: 600;
+      font-size: 1rem;
+    }
+    .sorting_asc,
+    .sorting_desc {
+      background-color: #eaecf1;
+    }
+  }
+}

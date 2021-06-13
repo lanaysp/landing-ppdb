@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <title>{{$page}}</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <link rel="stylesheet" href="{{my_asset('plugins/meeting/style.css')}}">
+    <link href="https://fonts.googleapis.com/css?family=DM+Sans:400,500,700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.1.0/css/all.css" integrity="sha384-lKuwvrZot6UHsBSfcMvOkWwlCMgc0TaWr+30HWe3a4ltaBwTZhyTEggF5tJv8tbt" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="{{my_asset('plugins/emoji/emojionearea.min.css')}}">
+    <link rel="stylesheet" href="{{my_asset('admin/users/vendors/toastr/toastr.min.css')}}">
+</head>
+
+<body>
+
+    <div class="app-container">
+        <button class="mode-switch">
+            <div id="sound"></div>
+            <input type="hidden" id="name" value="{{$identity['name']}}">
+            <input type="hidden" id="image" value="{{$identity['photo']}}">
+            <input type="hidden" id="identitas" value="{{Auth()->user()->id}}">
+            <input type="hidden" id="room_name" value="{{$data->title}}">
+            <input type="hidden" id="room_id" value="{{$sett->school_name}}-{{$data->kode}}">
+            <input type="hidden" id="identity" value="{{encrypt($data->id)}}">
+            <input type="hidden" id="role" value="{{Auth()->user()->type_account}}">
+            <svg class="sun" fill="none" stroke="#fbb046" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="feather feather-sun" viewBox="0 0 24 24">
+                <defs />
+                <circle cx="12" cy="12" r="5" />
+                <path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42" />
+            </svg>
+            <svg class="moon" fill="none" stroke="#ffffff" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="feather feather-moon" viewBox="0 0 24 24">
+                <defs />
+                <path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z" />
+            </svg>
+        </button>
+        <div class="left-side">
+            <div class="navigation">
+                @if(Auth()->user()->type_account == 'administrator')
+                <a href="{{route('dashboard')}}" class="nav-link icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-home" viewBox="0 0 24 24">
+                        <path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z" />
+                        <path d="M9 22V12h6v10" />
+                    </svg>
+                </a>
+                 <a href="javascript:void(0)" id="selesai" class="nav-link icon">
+                    <i class="fa fa-check-circle" style="font-size:24px;"></i>
+                </a>
+                @else
+                <a href="{{route('ppdb.dashboard')}}" class="nav-link icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-home" viewBox="0 0 24 24">
+                        <path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z" />
+                        <path d="M9 22V12h6v10" />
+                    </svg>
+                </a>
+                @endif
+                <a href="{{route('home')}}" class="nav-link icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-hard-drive">
+                        <line x1="22" y1="12" x2="2" y2="12" />
+                        <path d="M5.45 5.11L2 12v6a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2v-6l-3.45-6.89A2 2 0 0 0 16.76 4H7.24a2 2 0 0 0-1.79 1.11z" />
+                        <line x1="6" y1="16" x2="6.01" y2="16" />
+                        <line x1="10" y1="16" x2="10.01" y2="16" />
+                    </svg>
+                </a>
+            </div>
+        </div>
+        <div class="app-main">
+            <div class="video-call-wrapper" id="meeting">
+                <img class="watermark" src="{{my_asset($sett->website_logo)}}">
+            </div>
+            <div class="video-call-actions ">
+                <button class="video-action-button mic" id="microphone"><i class="fa fa-microphone-slash"></i></button>
+                <button class="video-action-button mic active" id="microphoneInactive" style="display: none;"><i class="fa fa-microphone"></i></button>
+                <button class="video-action-button camera " id="camera"><i class="fa fa-video-slash"></i></button>
+                <button class="video-action-button camera active" id="cameraInactive" style="display: none;"><i class="fa fa-video"></i></button>
+                <button class="video-action-button maximize " id="share"><i class="fa fa-desktop"></i> </button>
+                <button class="video-action-button maximize active" id="shareInactive" style="display: none;"><i class="fa fa-desktop"></i> </button>
+                <button class="video-action-button endcall"><i class="fa fa-phone-slash"></i></button>
+            </div>
+        </div>
+        <div class="right-side">
+            <button class="btn-close-right">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="feather feather-x-circle" viewBox="0 0 24 24">
+                    <defs></defs>
+                    <circle cx="12" cy="12" r="10"></circle>
+                    <path d="M15 9l-6 6M9 9l6 6"></path>
+                </svg>
+            </button>
+            <div class="chat-container">
+                <div class="chat-header">
+                    <button class="chat-header-button">
+                        Realtime Chatt
+                    </button>
+                    <button class="participant-header-button" id="jumlahview">
+                        <i class="fa fa-users"></i>
+                        0
+                    </button>
+                </div>
+                <div class="chat-area" id="conversation-panel">
+                    <div id="key-press" style="text-align: right; display: none; font-size: 20px;">
+                        <span style="vertical-align: middle;"></span>
+                        <img style="height: 30px; vertical-align: middle;" src="https://www.webrtc-experiment.com/images/key-press.gif">
+                    </div>
+
+
+                </div>
+                <div class="chat-typing-area-wrapper">
+                    <div class="chat-typing-area">
+                        <input type="text" id="txt-chat-message" placeholder="Tulis Pesan..." class="chat-input">
+                        <button class="send-button" id="kirim-pesan">
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-send" viewBox="0 0 24 24">
+                                <path d="M22 2L11 13M22 2l-7 20-4-9-9-4 20-7z" />
+                            </svg>
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <div class="participants" id="bergabung">
+                <div class="participant-more" id="only-one"></div>
+            </div>
+        </div>
+        <button class="expand-btn">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-message-circle">
+                <path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z" />
+            </svg>
+        </button>
+    </div>
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js'></script>
+    <script src="{{my_asset('plugins/meeting/api.js')}}"></script>
+    <script src="{{my_asset('plugins/stream/stream.js')}}"></script>
+    <script src="{{my_asset('plugins/stream/socket.io.js')}}"></script>
+    <script src="{{my_asset('plugins/emoji/emojionearea.min.js')}}"></script>
+    <script src="{{my_asset('plugins/fbr/FileBufferReader.js')}}"></script>
+    <script src="{{my_asset('admin/users/vendors/toastr/toastr.min.js')}}"></script>
+    <script src="{{my_asset('plugins/stream/room.js')}}"></script>
+</body>
+
+</html>
